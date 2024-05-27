@@ -13,7 +13,8 @@ user_group_messages as (
         hg.hk_group_id,
         count(distinct lum.hk_user_id) as cnt_users_in_group_with_messages
     from STV2024050734__DWH.h_groups as hg
-    left join STV2024050734__DWH.l_user_message as lum on hg.hk_group_id = lum.hk_message_id
+    left join STV2024050734__DWH.l_groups_dialogs as gdl on hg.hk_group_id = gdl.hk_group_id
+    left join STV2024050734__DWH.l_user_message as lum on gdl.hk_message_id = lum.hk_message_id
     group by hg.hk_group_id
 )
 select  
